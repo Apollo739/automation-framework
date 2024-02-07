@@ -21,3 +21,4 @@ test {
         suites "src/test/resources/TestNg.xml"
     }
 }
+
