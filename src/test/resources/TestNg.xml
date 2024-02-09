@@ -5,6 +5,9 @@
     <test name="example" >
         <classes>
             <class name="MainPageTest"/>
+            <class name="NavigationTest"/>
+            <class name="PlayAlbumTest"/>
+            <class name="SearchTest"/>
         </classes>
     </test>
 </suite>
