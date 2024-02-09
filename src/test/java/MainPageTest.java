@@ -14,7 +14,7 @@ public class MainPageTest extends BaseTest {
         WebElement emailInput = driver.findElement(By.cssSelector("[name='email']"));
         emailInput.sendKeys("blacklion739@gmail.com");
         WebElement passwordInput = driver.findElement(By.cssSelector("[name='password']"));
-        passwordInput.sendKeys("sirius739");
+        passwordInput.sendKeys("");
         WebElement  submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLoginButton.click();
         WebElement exploreStation = driver.findElement(By.cssSelector("#explore-stations"));
