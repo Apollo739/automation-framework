@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNg suite" verbose="1" >
+    <parameter name="baseUrl" value="https://www.jango.com/"></parameter>
     <test name="example" >
         <classes>
             <class name="MainPageTest"/>
