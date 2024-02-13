@@ -1,25 +1,29 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.w3c.dom.html.HTMLInputElement;
 
+import java.time.Duration;
+
 public class MainPageTest extends BaseTest {
 
     @Test
     public void loginTest() {
-        WebElement loginButton = driver.findElement(By.xpath("//a[text()='Log In']"));
-        loginButton.click();
-        WebElement emailInput = driver.findElement(By.cssSelector("[name='email']"));
-        emailInput.sendKeys("blacklion739@gmail.com");
-        WebElement passwordInput = driver.findElement(By.cssSelector("[name='password']"));
-        passwordInput.sendKeys("");
-        WebElement  submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLoginButton.click();
+        login("blacklion739@gmail.com", "");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a[text()='Log In']")));
         WebElement exploreStation = driver.findElement(By.cssSelector("#explore-stations"));
-        Assert.assertTrue(exploreStation.isDisplayed());
-
+        WebElement menuButton = driver.findElement(By.cssSelector("#menu-user"));
+        menuButton.click();
+        WebElement viewProfile = driver.findElement(By.xpath("//li[text()='View Profile']"));
+        viewProfile.click();
+        WebElement imageProfile = driver.findElement(By.cssSelector(".main-image"));
+        Assert.assertTrue(imageProfile.isDisplayed());
     }
 
     @Test
@@ -33,18 +37,8 @@ public class MainPageTest extends BaseTest {
 
     @Test(testName = "Check login function", dataProvider = "provideIncorrectCredentials", dataProviderClass = CredentialsProvider.class)
     public void loginWithIncorrectCredentials(String email, String password) {
-        WebElement loginButton = driver.findElement(By.xpath("//a[text()='Log In']"));
-        loginButton.click();
-        WebElement emailInput = driver.findElement(By.cssSelector("[name='email']"));
-        emailInput.sendKeys(email);
-        WebElement passwordInput = driver.findElement(By.cssSelector("[name='password']"));
-        passwordInput.sendKeys(password);
-        WebElement  submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLoginButton.click();
+        login(email, password);
         WebElement alert = driver.findElement(By.cssSelector("[role='alert']"));
         Assert.assertTrue(alert.isDisplayed());
     }
-
 }
-
-
