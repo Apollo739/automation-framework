@@ -18,7 +18,12 @@ public class MainPageTest extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a[text()='Log In']")));
         WebElement exploreStation = driver.findElement(By.cssSelector("#explore-stations"));
-        Assert.assertTrue(exploreStation.isDisplayed());
+        WebElement menuButton = driver.findElement(By.cssSelector("#menu-user"));
+        menuButton.click();
+        WebElement viewProfile = driver.findElement(By.xpath("//li[text()='View Profile']"));
+        viewProfile.click();
+        WebElement imageProfile = driver.findElement(By.cssSelector(".main-image"));
+        Assert.assertTrue(imageProfile.isDisplayed());
     }
 
     @Test
