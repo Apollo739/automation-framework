@@ -36,15 +36,4 @@ public class BaseTest {
         driver.close();
     }
 
-    public void login(String email, String password) {
-        WebElement loginButton = driver.findElement(By.xpath("//a[text()='Log In']"));
-        loginButton.click();
-        WebElement emailInput = driver.findElement(By.cssSelector("[name='email']"));
-        emailInput.sendKeys(email);
-        WebElement passwordInput = driver.findElement(By.cssSelector("[name='password']"));
-        passwordInput.sendKeys(password);
-        WebElement  submitLoginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLoginButton.click();
-    }
-
 }

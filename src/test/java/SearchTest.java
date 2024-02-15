@@ -13,7 +13,7 @@ public class SearchTest extends BaseTest {
     public void searchTest() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         String songName = "Zach Bryan";
-        login("blacklion739@gmail.com", "");
+//        login("blacklion739@gmail.com", "");
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#log-in")));
         WebElement searchSongInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".searchbar input")));
         searchSongInput.sendKeys(songName);

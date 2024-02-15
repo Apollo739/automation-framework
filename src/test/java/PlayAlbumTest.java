@@ -11,7 +11,7 @@ public class PlayAlbumTest extends BaseTest {
 
     @Test
     public void playAlbumTest() {
-        login("blacklion739@gmail.com", "");
+//        login("blacklion739@gmail.com", "");
         WebElement nowPlayingMenuItem = driver.findElement(By.xpath("//a[text()='My Stations']"));
         nowPlayingMenuItem.click();
         WebElement cleanAlbum = driver.findElement(By.xpath(" //div[contains(text(), 'Clean')]"));

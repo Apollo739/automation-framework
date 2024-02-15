@@ -14,16 +14,13 @@ public class MainPageTest extends BaseTest {
 
     @Test
     public void loginTest() {
-        login("blacklion739@gmail.com", "");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a[text()='Log In']")));
-        WebElement exploreStation = driver.findElement(By.cssSelector("#explore-stations"));
-        WebElement menuButton = driver.findElement(By.cssSelector("#menu-user"));
-        menuButton.click();
-        WebElement viewProfile = driver.findElement(By.xpath("//li[text()='View Profile']"));
-        viewProfile.click();
-        WebElement imageProfile = driver.findElement(By.cssSelector(".main-image"));
-        Assert.assertTrue(imageProfile.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("blacklion739@gmail.com", "");
+        loginPage.waitUntilLoginFormDisappeared();
+        HomePage homePage = new HomePage(driver);
+        homePage.openUserProfile();
+        ProfilePage profilePage = new ProfilePage(driver);
+        Assert.assertTrue(profilePage.isImageProfileDisplayed());
     }
 
     @Test
@@ -32,7 +29,6 @@ public class MainPageTest extends BaseTest {
         signUpButton.click();
         WebElement signUpForm = driver.findElement(By.cssSelector("#sign-up"));
         Assert.assertTrue(signUpForm.isDisplayed());
-
     }
 
     @Test(testName = "Check login function", dataProvider = "provideIncorrectCredentials", dataProviderClass = CredentialsProvider.class)
