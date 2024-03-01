@@ -11,6 +11,7 @@ public class LoginPage extends BasePage {
     By loginFormLocator = By.xpath("//a[text()='Log In']");
     By sighUpButtonLocator = By.xpath("//a[text()='Sign Up']");
 
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }

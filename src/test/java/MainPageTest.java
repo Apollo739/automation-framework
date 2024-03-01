@@ -25,16 +25,16 @@ public class MainPageTest extends BaseTest {
 
     @Test
     public void signUpTest() {
-        WebElement signUpButton = driver.findElement(By.xpath("//a[text()='Sign Up']"));
-        signUpButton.click();
-        WebElement signUpForm = driver.findElement(By.cssSelector("#sign-up"));
-        Assert.assertTrue(signUpForm.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickSignUpButton();
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        Assert.assertTrue(registrationPage.isSignUpFormDisplayed());
     }
 
     @Test(testName = "Check login function", dataProvider = "provideIncorrectCredentials", dataProviderClass = CredentialsProvider.class)
     public void loginWithIncorrectCredentials(String email, String password) {
-        login(email, password);
-        WebElement alert = driver.findElement(By.cssSelector("[role='alert']"));
-        Assert.assertTrue(alert.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(email, password);
+        Assert.assertTrue(loginPage.isAlertDisplayed());
     }
 }
