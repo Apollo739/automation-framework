@@ -11,14 +11,13 @@ public class PlayAlbumTest extends BaseTest {
 
     @Test
     public void playAlbumTest() {
-        login("blacklion739@gmail.com", "");
-        WebElement nowPlayingMenuItem = driver.findElement(By.xpath("//a[text()='My Stations']"));
-        nowPlayingMenuItem.click();
-        WebElement cleanAlbum = driver.findElement(By.xpath(" //div[contains(text(), 'Clean')]"));
-        cleanAlbum.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#player_main_row")));
-        WebElement playerMusicWidget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#player_main_row")));
-        Assert.assertTrue(playerMusicWidget.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("blacklion739@gmail.com", "");
+        HomePage homePage = new HomePage(driver);
+        homePage.clickToMyStationMenuItem();
+        MyStationPage myStationPage = new MyStationPage(driver);
+        myStationPage.clickToMyStationMenuItem();
+        NowPlaying nowPlaying = new NowPlaying(driver);
+        Assert.assertTrue(nowPlaying.isNowPlayingDisplaying());
     }
 }

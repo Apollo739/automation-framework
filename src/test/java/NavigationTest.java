@@ -7,10 +7,11 @@ public class NavigationTest extends BaseTest {
 
     @Test
     public void navigationTest() {
-        login("blacklion739@gmail.com", "");
-        WebElement nowPlayingMenuItem = driver.findElement(By.xpath("//a[text()='My Stations']"));
-        nowPlayingMenuItem.click();
-        WebElement myStations = driver.findElement(By.cssSelector("#my-stations"));
-        Assert.assertTrue(myStations.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("blacklion739@gmail.com", "sirius739");
+        HomePage homePage = new HomePage(driver);
+        homePage.clickToMyStationMenuItem();
+        MyStationPage myStationPage = new MyStationPage(driver);
+        Assert.assertTrue(myStationPage.isMyStationDisplayed());
     }
 }
