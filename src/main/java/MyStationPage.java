@@ -1,21 +1,18 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class MyStationPage extends BasePage {
-    By cleanAlbumLocator = By.xpath(" //div[contains(text(), 'Clean')]");
+    @FindBy  (css= "#my-stations")
 
-    By myStationsLocator = By.cssSelector("#my-stations");
+
+    WebElement myStationsLocator;
     public MyStationPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean isMyStationDisplayed() {
-        WebElement myStation = waitAndFindWebElement(myStationsLocator);
-        return myStation.isDisplayed();
-    }
-    public void clickToCleanAlbum() {
-        WebElement cleanAlbum = waitAndFindWebElement(cleanAlbumLocator);
-        cleanAlbum.click();
+        return  myStationsLocator.isDisplayed();
     }
 }

@@ -15,7 +15,7 @@ public class MainPageTest extends BaseTest {
     @Test
     public void loginTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("blacklion739@gmail.com", "");
+        loginPage.login("blacklion739@gmail.com", "sirius739");
         loginPage.waitUntilLoginFormDisappeared();
         HomePage homePage = new HomePage(driver);
         homePage.openUserProfile();

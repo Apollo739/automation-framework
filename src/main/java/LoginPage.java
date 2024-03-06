@@ -1,29 +1,31 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-    By loginButtonLocator = By.xpath("//a[text()='Log In']");
-    By emailInputLocator = By.cssSelector("[name='email']");
-    By passwordInputLocator = By.cssSelector("[name='password']");
-    By submitButtonLocator = By.cssSelector("button[type='submit']");
-    By loginFormLocator = By.xpath("//a[text()='Log In']");
-    By sighUpButtonLocator = By.xpath("//a[text()='Sign Up']");
-
+    @FindBy(xpath = "//a[text()='Log In']")
+    WebElement loginButtonLocator;
+    @FindBy(css = "[name='email']")
+    WebElement emailInputLocator;
+    @FindBy(css = "[name='password']")
+    WebElement passwordInputLocator;
+    @FindBy(css = "button[type='submit']")
+    WebElement submitLoginButton;
+    @FindBy(xpath = "//a[text()='Log In']")
+    WebElement loginFormLocator;
+    @FindBy(xpath = "//a[text()='Sign Up']")
+    WebElement signUpButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public void login(String email, String password) {
-        WebElement loginButton = waitAndFindWebElement(loginButtonLocator);
-        loginButton.click();
-        WebElement emailInput = waitAndFindWebElement(emailInputLocator);
-        emailInput.sendKeys(email);
-        WebElement passwordInput = waitAndFindWebElement(passwordInputLocator);
-        passwordInput.sendKeys(password);
-        WebElement  submitLoginButton = waitAndFindWebElement(submitButtonLocator);
+        loginButtonLocator.click();
+        emailInputLocator.sendKeys(email);
+        passwordInputLocator.sendKeys(password);
         submitLoginButton.click();
     }
 
@@ -32,7 +34,6 @@ public class LoginPage extends BasePage {
     }
 
     public void clickSignUpButton() {
-        WebElement signUpButton = waitAndFindWebElement(sighUpButtonLocator);
         signUpButton.click();
     }
 }
