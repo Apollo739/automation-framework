@@ -1,13 +1,14 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class NowPlaying extends BasePage {
-    By playerMusicWidgetLocator = By.cssSelector("#player_main_row");
+    @FindBy(css = "#player_main_row")
+    WebElement playerMusicWidgetLocator;
     public boolean isNowPlayingDisplaying(){
-        WebElement playerMusic = waitAndFindWebElement(playerMusicWidgetLocator);
-        return playerMusic.isDisplayed();
+        return playerMusicWidgetLocator.isDisplayed();
     }
     public NowPlaying(WebDriver driver) {
         super(driver);
