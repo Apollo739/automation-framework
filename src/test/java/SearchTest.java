@@ -11,13 +11,13 @@ public class SearchTest extends BaseTest {
 
     @Test
     public void searchTest() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(getWebDriver(), Duration.ofSeconds(5));
         String songName = "Zach Bryan";
 //        login("blacklion739@gmail.com", "");
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#log-in")));
         WebElement searchSongInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".searchbar input")));
         searchSongInput.sendKeys(songName);
-        WebElement searchResult = driver.findElement(By.xpath(String.format("//h3[contains(text(), '%s')]", songName)));
+        WebElement searchResult = getWebDriver().findElement(By.xpath(String.format("//h3[contains(text(), '%s')]", songName)));
         Assert.assertTrue(searchResult.isDisplayed());
     }
 }
