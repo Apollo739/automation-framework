@@ -14,11 +14,12 @@ import org.testng.annotations.Test;
 
 public class BaseTest {
 
-    WebDriver driver = null;
+    private WebDriver driver = null;
+    private static final ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
 
     @BeforeSuite
     public void  setupDriver() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().clearDriverCache().setup();
     }
 
     @BeforeMethod
@@ -28,12 +29,16 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(baseUrl);
+        threadLocal.set(driver);
+        threadLocal.get().get(baseUrl);
+    }
+
+    public WebDriver getWebDriver() {
+        return threadLocal.get();
     }
 
     @AfterMethod
     public void closeDriver() {
-        driver.close();
+        getWebDriver().close();
     }
-
 }
